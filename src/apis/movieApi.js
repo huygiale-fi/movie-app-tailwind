@@ -1,11 +1,13 @@
-import callAPI from "../utils/callApi";
+import axiosClient from "../utils/callApi";
 import { GROUP_ID } from '../setting/apiconfig';
 const movieApi = {
-    fetchAllMovie: (sotrang) => {
-        return callAPI(`QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${GROUP_ID}&soTrang=${sotrang}&soPhanTuTrenTrang=12`, "GET")
+    fetchAllMoviePage: (sotrang) => {
+        const url = `QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${GROUP_ID}&soTrang=${sotrang}&soPhanTuTrenTrang=12`
+        return axiosClient.get(url)
     },
     fetchMovieDetail: (movieid) => {
-        return callAPI(`QuanLyPhim/LayThongTinPhim?MaPhim=${movieid}`, "GET")
+        const url = `QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieid}`
+        return axiosClient.get(url)
     },
 }
 export default movieApi;
